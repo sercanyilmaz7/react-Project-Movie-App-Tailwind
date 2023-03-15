@@ -80,6 +80,6 @@ const MovieDetail = () => {
 
 export default MovieDetail;
 
-{
+
   /* //? responsive için md:  lg:   olarak kullanılır.  */
-}
+

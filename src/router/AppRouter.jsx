@@ -24,6 +24,6 @@ const AppRouter = () => {
 };
 
 export default AppRouter;
-{
+
   /* //? :id olacak ki usePArams bunu  parametre olarak algılasın ve yakalasın. id değişken oluyor o yüzden herhangi bir sayı girdiğimiz de bize MovieDiteils sayfasını geitecek.*/
-}
+
