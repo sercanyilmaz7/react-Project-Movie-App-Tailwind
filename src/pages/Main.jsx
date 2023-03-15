@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
+import Pagination from "../components/Pagination";
+
 import { AuthContext } from "../context/AuthContext";
 import { MovieContext } from "../context/MovieContext";
 import { toastWarnNotify } from "../helpers/ToastNotify";
@@ -12,6 +14,19 @@ const Main = () => {
   const { currentUser } = useContext(AuthContext);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+
+
+
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  console.log(movies);
+  const currentPosts = movies.slice(firstPostIndex, lastPostIndex);
+  console.log(...currentPosts);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,9 +61,15 @@ const Main = () => {
             <span className="visually-hidden">Loading...</span>
           </div>
         ) : (
-          movies.map((movie) => <MovieCard key={movie.id} {...movie} />)
+          currentPosts.map((movie) => <MovieCard key={movie.id} {...movie} />)
         )}
       </div>
+      <Pagination
+        totalPosts={movies.length}
+        postsPerPage={postsPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </>
   );
 };
